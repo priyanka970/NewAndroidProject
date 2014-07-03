@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="unittest" default="test">
+    <property file="local.properties" />
+    <property file="ant.properties" />
+    <property environment="env" />
+    <condition property="sdk.dir" value="${env.ANDROID_HOME}">
+        <isset property="env.ANDROID_HOME" />
+    </condition>
+    <loadproperties srcFile="project.properties" />
+    <fail
+            message="sdk.dir is missing. Make sure to generate local.properties using 'android update project' or to inject it through the ANDROID_HOME environment variable."
+            unless="sdk.dir"
+    />
+
+    <target name="test" >
+         
+   <echo>${build.tests}</echo>
+    <!--   <echo>${java.class.path}</echo> -->
+ <junit printsummary="yes" fork="no" haltonfailure="no"> 
+   
+   <classpath>
+    <pathelement location="C:\\Users\\priyankay\\workspace\\unittest\\libs\\junit-4.8.jar"
+         />
+    <pathelement location="C:\\Users\\priyankay\\workspace\\unittest\\bin\\classes"/>
+     <pathelement path="${java.class.path}"/>
+</classpath>
+     
+  <formatter type="plain" usefile="no"/>
+    <!-- <test name="com.example.unittest.MainActivityUnitTest"/>  -->
+   <batchtest fork="yes" todir="bin">
+    <fileset dir="src">
+      <include name="**/*Test.java"/>
+     
+    </fileset> 
+    
+
+    
+   </batchtest>  
+</junit>
+
+</target>
+     
+</project>
